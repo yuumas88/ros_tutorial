@@ -12,9 +12,9 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   can_plugins
+  message_generation
   sensor_msgs
   COMPONENTS
-  catkin REQUIRED
 )
 
 ## System dependencies are found with CMake's conventions
@@ -51,18 +51,17 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+ add_message_files(
+    FILES
+    my_msgType.msg
+ )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
+ add_service_files(
+   FILES ItoB.srv
 #   Service1.srv
 #   Service2.srv
-# )
+ )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -72,10 +71,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+ generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -106,12 +105,12 @@ find_package(catkin REQUIRED COMPONENTS
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
+#catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES ros_tutorial
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+ # CATKIN_DEPENDS message_runtime
 #  DEPENDS system_lib
-)
+#)
 
 ###########
 ## Build ##
@@ -140,8 +139,27 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/ros_tutorial_node.cpp)
 add_executable(ros_tutorial_node src/tutorial.cpp)
 add_executable(sub_node src/sub.cpp)
+add_executable(hello_world src/hello_world.cpp)
+add_executable(my_first_node src/my_first_node.cpp)
+add_executable(my_first_publisher
+      src/my_first_publisher.cpp)
+add_executable(my_first_subscriber src/my_first_subscriber.cpp)
+add_executable(my_second_publisher src/my_second_publisher.cpp)
+add_executable(my_second_subscriber src/my_second_subscriber.cpp)
+add_executable(my_third_publisher src/my_third_publisher.cpp)
+add_executable(itob_server src/itob_server.cpp)
+add_executable(get_turtlesim_param src/get_turtlesim_param.cpp)
 target_link_libraries(ros_tutorial_node ${catkin_LIBRARIES})
 target_link_libraries(sub_node ${catkin_LIBRARIES})
+target_link_libraries(hello_world ${catkin_LIBRARIES})
+target_link_libraries(my_first_node ${catkin_LIBRARIES})
+target_link_libraries(my_first_publisher ${catkin_LIBRARIES})
+target_link_libraries(my_first_subscriber ${catkin_LIBRARIES})
+target_link_libraries(my_second_publisher ${catkin_LIBRARIES})
+target_link_libraries(my_second_subscriber ${catkin_LIBRARIES})
+target_link_libraries(my_third_publisher ${catkin_LIBRARIES})
+target_link_libraries(itob_server ${catkin_LIBRARIES})
+target_link_libraries(get_turtlesim_param ${catkin_LIBRARIES})
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use

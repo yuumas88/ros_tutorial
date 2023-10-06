@@ -1,7 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "sensor_msgs/Joy.h"
-#include "../include/can_utils.hpp"
 #include "can_plugins/Frame.h"
 
 void chatterCallback(const sensor_msgs::Joy::ConstPtr& msg);
